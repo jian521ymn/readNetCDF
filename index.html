@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <button id="canvas">read netcdf file</button>
+    <textarea style="background: black;
+    color: white;" name="1" id="aa" cols="80" rows="20"></textarea>
+        <script src="./node_modules/axios/dist/axios.js"></script>
+    <script>
+       document.getElementById('canvas').onclick=async()=>{
+            const filePath = await window.electronAPI.openFile() 
+            axios.get('http://127.0.0.1:8888/index',{
+                params:{filePath}
+            }).then(res=>{
+                document.querySelector('#aa').value=res.data.data
+                console.log(res.data,'ress',filePath);
+            })
+       }
+    </script>
+</body>
+</html>
